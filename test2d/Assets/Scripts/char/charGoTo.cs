@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class charGoTo : MonoBehaviour
 {
-    
-    Vector2 realPosition;
-    
-    float errRange = 0.01f;
-    
 
+    Vector2 realPosition;
+
+    float errRange = 0.01f;
+
+    bool goToHome = false;
+
+    public bool _getGoToHome()
+    {
+        return (goToHome);
+    }
     // Update is called once per frame
     public Vector2 _geteGoTo(Vector2 targetPosition)
     {
@@ -30,10 +35,10 @@ public class charGoTo : MonoBehaviour
 
 
         float R = Mathf.Sqrt(X * X + Y * Y);
-
+        goToHome = false;
         if ((X < errRange && X > -errRange) ||( Y < errRange && Y > -errRange))
         {
-            
+
             if (X == 0 && Y > errRange)
             {
                 moveVector = new Vector2(0, 1f);
@@ -50,7 +55,11 @@ public class charGoTo : MonoBehaviour
             {
                 moveVector = new Vector2(-1f, 0);
             }
-            else moveVector = new Vector2(0, 0);
+            else
+            {
+                goToHome = true;
+                moveVector = new Vector2(0, 0);
+            }
         }
         else
         {

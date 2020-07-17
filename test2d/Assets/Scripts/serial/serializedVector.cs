@@ -13,8 +13,8 @@ public class serializedVector : MonoBehaviour
     void Start()
     {
         Base = Camera.main.GetComponent<dataBaseSprites>();
-        currsor = Base.currsor;
-        stop = Base.stop;
+        currsor = Base.spriteArray[0];
+        stop = Base.spriteArray[1];
 
         myCurrsor = new GameObject();
         myCurrsor.name = "currsor";

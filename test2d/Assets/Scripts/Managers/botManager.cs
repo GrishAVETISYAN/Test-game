@@ -1,35 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class botManager : MonoBehaviour
 {
     charMove CM;
     charGoTo CGT;
     serializedVector SV;
-    Vector2 targetPosition;
-    Vector2 moveVector;
+    
+    
 
 
 
+    charWayPoints CWP;
+    serializedWayPoints SWP;
+    
     void Start()
     {
         CM = GetComponent<charMove>();
         CGT = GetComponent<charGoTo>();
         SV = GetComponent<serializedVector>();
+
+        CWP = GetComponent<charWayPoints>();
+        SWP = GetComponent<serializedWayPoints>();
+
+        SWP._doAddPositions(CWP._getTargetPositions());
+        SWP._doAddCurrsor(CWP._getTargetPositionCurrsor());
+        SWP._doCreateWayPoints();
     }
 
     
     void Update()
     {
-        targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        moveVector = CGT._geteGoTo(targetPosition);
+
+
+        /*
+        //depi mouse gnal
+        Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 moveVector = CGT._geteGoTo(targetPosition);
 
         CM._doMove                  (moveVector);
-        SV._doSerializedVector      (moveVector);
-        
+        SV._doSerializedVector      (moveVector);*/
+        if (!CWP._getWayPointsEnd()) {
+            Vector2 moveVector = CGT._geteGoTo(CWP._getTargetPosition());
 
+            CM._doMove(moveVector);
+            SV._doSerializedVector(moveVector);
 
+            if (CGT._getGoToHome())
+            {
+                CWP._doAddCurrsor();
+                SWP._doAddCurrsor(CWP._getTargetPositionCurrsor());
+                SWP._doRefresh();
+
+            }
+        }
 
     }
 }

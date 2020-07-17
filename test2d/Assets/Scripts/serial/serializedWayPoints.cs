@@ -5,26 +5,35 @@ using UnityEngine;
 public class serializedWayPoints : MonoBehaviour
 {
     dataBaseSprites Base;
-    public Sprite wayPoint;
-    
+    Sprite wayPoint;
+    Sprite wayPointTrue;
 
 
-    public Vector2[] wayPoints;
-    public GameObject[] wayPointsObjects;
+
+    Vector2[] wayPoints;
+    GameObject[] wayPointsObjects;
+    int currsor;
     void Start()
     {
         Base = Camera.main.GetComponent<dataBaseSprites>();
-        wayPoint = Base.wayPoint;
-        _doCreateWayPoints();
+        wayPoint = Base.spriteArray[2];
+        wayPointTrue = Base.spriteArray[3];
+        
 
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void _doAddPositions(Vector2[] _wayPoints)
+    {
+        wayPoints = _wayPoints;
+    }
+    public void _doAddCurrsor(int _currsor)
     {
         
+        currsor = _currsor;
     }
+
+
 
     public void _doCreateWayPoints()
     {
@@ -38,7 +47,8 @@ public class serializedWayPoints : MonoBehaviour
             wayPointsObjects[i].name = "wayPoint";
             SpriteRenderer SP = wayPointsObjects[i].AddComponent<SpriteRenderer>();
             wayPointsObjects[i].transform.position = v2;
-            SP.sprite = wayPoint;
+            if(i>= currsor) SP.sprite = wayPoint;
+            else SP.sprite = wayPointTrue;
             SP.sortingOrder = 2;
             i++;
         }
@@ -52,6 +62,14 @@ public class serializedWayPoints : MonoBehaviour
                 Destroy(obj);
             }
         
+    }
+
+    public void _doRefresh()
+    {
+
+        _doDestroyWayPaints();
+        _doCreateWayPoints();
+
     }
 
 
