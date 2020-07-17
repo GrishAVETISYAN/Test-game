@@ -3,25 +3,21 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class chrGoTo : MonoBehaviour
+public class charGoTo : MonoBehaviour
 {
-    public Vector2 targetPosition;
+    public Vector2 targetPosition;//            +get position
     Vector2 realPosition;
-    [SerializeField] Vector2 moveVector;
-    charMove CM;
+    public Vector2 moveVector;//                +give moveVector
     float errRange = 0.01f;
-    void Start()
-    {
-        CM = gameObject.GetComponent<charMove>();
-    }
+    
 
     // Update is called once per frame
     void Update()
     {
-        targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
         realPosition = gameObject.transform.position;
         moveVector = getVector(realPosition, targetPosition);
-        CM.moveVector = moveVector;
+        
 
 
 

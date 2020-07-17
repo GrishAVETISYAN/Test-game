@@ -1,19 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class serializedVector : MonoBehaviour
 {
-    public Sprite currsor;//baseic petq vercni
-    public Sprite stop;//baseic petq vercni
+    dataBaseSprites Base;
+    Sprite currsor;//baseic petq vercni
+    Sprite stop;//baseic petq vercni
 
-    public Vector2 vector;
+    
     GameObject myCurrsor;
     SpriteRenderer myCurrsorSR;
-    [SerializeField] float alpha;
+    float alpha;
     void Start()
     {
+        Base = Camera.main.GetComponent<dataBaseSprites>();
+        currsor = Base.currsor;
+        stop = Base.stop;
+
         myCurrsor = new GameObject();
         myCurrsorSR=myCurrsor.AddComponent<SpriteRenderer>();
         
@@ -22,8 +24,8 @@ public class serializedVector : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    
+    public void _doSerializedVector(Vector2 vector)
     {
         myCurrsor.transform.position = gameObject.transform.position;
 
