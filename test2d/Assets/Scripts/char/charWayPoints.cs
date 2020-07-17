@@ -21,7 +21,9 @@ public class charWayPoints : MonoBehaviour
 
     public bool _getWayPointsEnd()
     {
+
         return (end);
+        
     }
     public Vector2 _getTargetPosition()
     {
@@ -42,9 +44,11 @@ public class charWayPoints : MonoBehaviour
         if(curssor == WPs.Length-1)
         {
             end = true;
+            curssor++;
         }
         else
         curssor++;
+
     }
 
 }

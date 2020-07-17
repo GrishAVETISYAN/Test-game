@@ -15,7 +15,10 @@ public class botManager : MonoBehaviour
 
     charWayPoints CWP;
     serializedWayPoints SWP;
-    
+
+    Vector2 moveVector;
+
+
     void Start()
     {
         CM = GetComponent<charMove>();
@@ -25,8 +28,8 @@ public class botManager : MonoBehaviour
         CWP = GetComponent<charWayPoints>();
         SWP = GetComponent<serializedWayPoints>();
 
-        SWP._doAddPositions(CWP._getTargetPositions());
-        SWP._doAddCurrsor(CWP._getTargetPositionCurrsor());
+        SWP._doSetPositions(CWP._getTargetPositions());
+        SWP._doSetCurrsor(CWP._getTargetPositionCurrsor());
         SWP._doCreateWayPoints();
     }
 
@@ -42,17 +45,21 @@ public class botManager : MonoBehaviour
 
         CM._doMove                  (moveVector);
         SV._doSerializedVector      (moveVector);*/
+
+        //wayPointnerovGnaly
         if (!CWP._getWayPointsEnd()) {
-            Vector2 moveVector = CGT._geteGoTo(CWP._getTargetPosition());
+            moveVector = CGT._getGoTo(CWP._getTargetPosition());
 
             CM._doMove(moveVector);
             SV._doSerializedVector(moveVector);
 
             if (CGT._getGoToHome())
             {
+                
                 CWP._doAddCurrsor();
-                SWP._doAddCurrsor(CWP._getTargetPositionCurrsor());
+                SWP._doSetCurrsor(CWP._getTargetPositionCurrsor());
                 SWP._doRefresh();
+
 
             }
         }

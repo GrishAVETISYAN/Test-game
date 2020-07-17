@@ -23,11 +23,11 @@ public class serializedWayPoints : MonoBehaviour
 
     }
 
-    public void _doAddPositions(Vector2[] _wayPoints)
+    public void _doSetPositions(Vector2[] _wayPoints)
     {
         wayPoints = _wayPoints;
     }
-    public void _doAddCurrsor(int _currsor)
+    public void _doSetCurrsor(int _currsor)
     {
         
         currsor = _currsor;

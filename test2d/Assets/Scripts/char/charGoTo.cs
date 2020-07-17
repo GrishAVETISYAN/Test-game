@@ -17,7 +17,7 @@ public class charGoTo : MonoBehaviour
         return (goToHome);
     }
     // Update is called once per frame
-    public Vector2 _geteGoTo(Vector2 targetPosition)
+    public Vector2 _getGoTo(Vector2 targetPosition)
     {
         
         realPosition = gameObject.transform.position;
@@ -36,30 +36,13 @@ public class charGoTo : MonoBehaviour
 
         float R = Mathf.Sqrt(X * X + Y * Y);
         goToHome = false;
-        if ((X < errRange && X > -errRange) ||( Y < errRange && Y > -errRange))
+        if ((X < errRange && X > -errRange) &&( Y < errRange && Y > -errRange))
         {
 
-            if (X == 0 && Y > errRange)
-            {
-                moveVector = new Vector2(0, 1f);
-            }
-            else if (X == 0 && Y < -errRange)
-            {
-                moveVector = new Vector2(0, -1f);
-            }
-            else if (X > errRange && Y == 0)
-            {
-                moveVector = new Vector2(1f, 0);
-            }
-            else if (X < -errRange && Y == 0)
-            {
-                moveVector = new Vector2(-1f, 0);
-            }
-            else
-            {
+            
                 goToHome = true;
                 moveVector = new Vector2(0, 0);
-            }
+            
         }
         else
         {
