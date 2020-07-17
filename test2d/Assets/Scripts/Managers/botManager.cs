@@ -8,8 +8,9 @@ public class botManager : MonoBehaviour
     charGoTo CGT;
     serializedVector SV;
     Vector2 targetPosition;
+    Vector2 moveVector;
 
-    
+
 
     void Start()
     {
@@ -22,8 +23,11 @@ public class botManager : MonoBehaviour
     void Update()
     {
         targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        moveVector = CGT._geteGoTo(targetPosition);
 
-        CGT.targetPosition = targetPosition;
+        CM._doMove                  (moveVector);
+        SV._doSerializedVector      (moveVector);
+        
 
 
 

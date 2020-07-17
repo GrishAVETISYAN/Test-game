@@ -17,7 +17,8 @@ public class serializedVector : MonoBehaviour
         stop = Base.stop;
 
         myCurrsor = new GameObject();
-        myCurrsorSR=myCurrsor.AddComponent<SpriteRenderer>();
+        myCurrsor.name = "currsor";
+        myCurrsorSR =myCurrsor.AddComponent<SpriteRenderer>();
         
         myCurrsorSR.sortingOrder = 1;
 

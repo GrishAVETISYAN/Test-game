@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class charGoTo : MonoBehaviour
 {
-    public Vector2 targetPosition;//            +get position
+    
     Vector2 realPosition;
-    public Vector2 moveVector;//                +give moveVector
+    
     float errRange = 0.01f;
     
 
     // Update is called once per frame
-    void Update()
+    public Vector2 _geteGoTo(Vector2 targetPosition)
     {
         
         realPosition = gameObject.transform.position;
-        moveVector = getVector(realPosition, targetPosition);
-        
+        Vector2 moveVector = getVector(realPosition, targetPosition);
+        return (moveVector);
 
 
 

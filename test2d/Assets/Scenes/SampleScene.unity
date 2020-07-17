@@ -316,7 +316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102b50035f09bab438ccdac88c5edad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveVector: {x: 0, y: 0}
   moveSpeed: 1
 --- !u!114 &1029445596
 MonoBehaviour:
@@ -330,7 +329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ea81e4ccabd1e47b13fc5eaca9813b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveVector: {x: 0, y: 0}
 --- !u!114 &1029445597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ad9b051bd80e348ad19c0787fb6c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vector: {x: 0, y: 0}
 --- !u!114 &1029445598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1137386774}
   - component: {fileID: 1137386773}
+  - component: {fileID: 1137386776}
   - component: {fileID: 1137386771}
   - component: {fileID: 1137386772}
   - component: {fileID: 1137386775}
@@ -388,7 +386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102b50035f09bab438ccdac88c5edad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveVector: {x: 0, y: 0}
   moveSpeed: 1
 --- !u!114 &1137386772
 MonoBehaviour:
@@ -402,8 +399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da87540a58c9464aa1a49af73cb066e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPosition: {x: 0, y: 0}
-  moveVector: {x: 0, y: 0}
 --- !u!212 &1137386773
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -480,4 +475,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ad9b051bd80e348ad19c0787fb6c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vector: {x: 0, y: 0}
+--- !u!114 &1137386776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137386770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9008fb14fc5b01489bd8af284153d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
