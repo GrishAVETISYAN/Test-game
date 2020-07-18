@@ -10,10 +10,11 @@ public class serializedWayPoints : MonoBehaviour
 
 
 
-    Vector2[] wayPoints;
+    [SerializeField] Vector2[] wayPoints;
+    [SerializeField]  int currsor;
+
     GameObject[] wayPointsObjects;
-    int currsor;
-    void Start()
+    void Awake()
     {
         Base = Camera.main.GetComponent<dataBaseSprites>();
         wayPoint = Base.spriteArray[2];
@@ -32,7 +33,12 @@ public class serializedWayPoints : MonoBehaviour
         
         currsor = _currsor;
     }
+    public void _doSetPositionsAndCurrsor(Vector2[] _wayPoints, int _currsor)
+    {
 
+        _doSetPositions(_wayPoints);
+        _doSetCurrsor(_currsor);
+    }
 
 
     public void _doCreateWayPoints()

@@ -492,6 +492,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9008fb14fc5b01489bd8af284153d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPoints:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 0, y: -1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 1}
+  wayPointsCurrsor: 0
 --- !u!114 &1137386777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ffe16356e6bbe41974c7b28e770e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPoints: []
+  currsor: 0
 --- !u!114 &1137386778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,8 +525,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c62cf580f1403d44b080d80b3438b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WPs:
-  - {x: 1, y: 1}
-  - {x: 2, y: 0}
-  - {x: -1, y: 3}
-  curssor: 0
+  end: 0

@@ -5,9 +5,9 @@ using UnityEngine.UIElements;
 
 public class charWayPoints : MonoBehaviour
 {
-    public Vector2[] WPs= {new Vector2(0,-1), new Vector2(1, 1), new Vector2(-1, 1) };
-    public int curssor = 0;
-    bool end = false;
+    Vector2[] WPs= {new Vector2(0,-1), new Vector2(1, 1), new Vector2(-1, 1) };
+    int curssor = 0;
+    [SerializeField]bool end = false;
     void Start()
     {
         
@@ -39,16 +39,33 @@ public class charWayPoints : MonoBehaviour
         return (curssor);
     }
 
-    public void _doAddCurrsor()
+    public void _doAddCurrsorCheck(int _curssor)
     {
-        if(curssor == WPs.Length-1)
+        curssor = _curssor;
+        if (curssor == WPs.Length)
         {
             end = true;
-            curssor++;
+            
         }
-        else
-        curssor++;
+        
 
+    }
+
+    public void _doSetPositions(Vector2[] _wayPoints)
+    {
+        WPs = _wayPoints;
+    }
+    public void _doSetCurrsor(int _currsor)
+    {
+
+        curssor = _currsor;
+    }
+
+    public void _doSetPositionsAndCurrsor(Vector2[] _wayPoints,int _currsor)
+    {
+
+        _doSetPositions(_wayPoints);
+        _doSetCurrsor(_currsor);
     }
 
 }
