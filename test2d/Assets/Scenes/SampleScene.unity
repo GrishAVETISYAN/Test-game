@@ -172,6 +172,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7718d37a600468c4aad838cb63ce22aa, type: 3}
   - {fileID: 21300000, guid: 504ce0e511690a640939d40518d39940, type: 3}
   - {fileID: 21300000, guid: a4b6ce6e2b3c9994dab4453c5ba62177, type: 3}
+  - {fileID: 21300000, guid: 244238b6871690e418dddbc835f06899, type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -244,6 +245,7 @@ GameObject:
   - component: {fileID: 1029445596}
   - component: {fileID: 1029445597}
   - component: {fileID: 1029445599}
+  - component: {fileID: 1029445600}
   m_Layer: 0
   m_Name: char
   m_TagString: Untagged
@@ -376,12 +378,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54308a87411012148a399bf778740077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: 0
+  actionMode: 0
   lookMouseClk: 1
+  click: 0
   zamax: 0
   attack: 0
-  zamaxTime: 1
-  attackTime: 0.5
+  zamaxAttackTime:
+  - 0.2
+  - 1
+  attackTime:
+  - 0.1
+  - 0.5
+  attackCurrsor: 0
+  parirovanieTime:
+  - 0.1
+  - 1
+--- !u!114 &1029445600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029445592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f9cd38314eeaf4b840e82280137858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1137386770
 GameObject:
   m_ObjectHideFlags: 0
