@@ -1,2 +1,2 @@
 # Test-game
-Test for understanding github
+Trying to create a pixel art, rouge-like, rpg game
