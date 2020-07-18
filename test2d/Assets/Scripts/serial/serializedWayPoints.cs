@@ -11,8 +11,8 @@ public class serializedWayPoints : MonoBehaviour
 
 
 
-    [SerializeField] Vector2[] wayPoints;
-    [SerializeField]  int currsor;
+    Vector2[] wayPoints;
+    int currsor;
 
     GameObject[] wayPointsObjects;
     GameObject[] wayPointsObjectsCurrsors;
@@ -73,7 +73,7 @@ public class serializedWayPoints : MonoBehaviour
             SP.sortingOrder = 2;
             SP.drawMode = SpriteDrawMode.Tiled;
             SP.size = new Vector2(_getToPointDistance(wayPoints[i], wayPoints[i + 1]), SP.size.y);
-            Debug.Log(Vector2.Angle(wayPoints[i], wayPoints[i + 1]));
+            
             wayPointsObjectsCurrsors[i].transform.eulerAngles = new Vector3(0,0, Mathf.Atan2(wayPoints[i+1].y - wayPoints[i].y, wayPoints[i + 1].x - wayPoints[i].x) * 180 / Mathf.PI);
 
 
