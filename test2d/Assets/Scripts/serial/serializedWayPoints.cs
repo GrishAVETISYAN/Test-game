@@ -7,6 +7,7 @@ public class serializedWayPoints : MonoBehaviour
     dataBaseSprites Base;
     Sprite wayPoint;
     Sprite wayPointTrue;
+    Sprite wayPointCurrsor;
 
 
 
@@ -14,12 +15,14 @@ public class serializedWayPoints : MonoBehaviour
     [SerializeField]  int currsor;
 
     GameObject[] wayPointsObjects;
+    GameObject[] wayPointsObjectsCurrsors;
     void Awake()
     {
         Base = Camera.main.GetComponent<dataBaseSprites>();
         wayPoint = Base.spriteArray[2];
         wayPointTrue = Base.spriteArray[3];
-        
+        wayPointCurrsor = Base.spriteArray[4];
+
 
 
     }
@@ -45,19 +48,41 @@ public class serializedWayPoints : MonoBehaviour
     {
         
         wayPointsObjects = new GameObject[wayPoints.Length];
-        
-        int i = 0;
-        foreach (Vector2 v2 in wayPoints)
+
+
+        for (int i = 0; i < wayPoints.Length; i++)
         {
             wayPointsObjects[i] = new GameObject();
             wayPointsObjects[i].name = "wayPoint";
             SpriteRenderer SP = wayPointsObjects[i].AddComponent<SpriteRenderer>();
-            wayPointsObjects[i].transform.position = v2;
+            wayPointsObjects[i].transform.position = wayPoints[i];
             if(i>= currsor) SP.sprite = wayPoint;
             else SP.sprite = wayPointTrue;
-            SP.sortingOrder = 2;
-            i++;
+            SP.sortingOrder = 3;
+            
         }
+        wayPointsObjectsCurrsors = new GameObject[wayPoints.Length-1];
+
+        for (int i=0;i< wayPoints.Length-1;i++)
+        {
+            wayPointsObjectsCurrsors[i] = new GameObject();
+            wayPointsObjectsCurrsors[i].name = "wayPointCurrsor";
+            SpriteRenderer SP = wayPointsObjectsCurrsors[i].AddComponent<SpriteRenderer>();
+            wayPointsObjectsCurrsors[i].transform.position = (wayPoints[i]+ wayPoints[i+1])/2;
+            SP.sprite = wayPointCurrsor;
+            SP.sortingOrder = 2;
+            SP.drawMode = SpriteDrawMode.Tiled;
+            SP.size = new Vector2(_getToPointDistance(wayPoints[i], wayPoints[i + 1]), SP.size.y);
+            Debug.Log(Vector2.Angle(wayPoints[i], wayPoints[i + 1]));
+            wayPointsObjectsCurrsors[i].transform.eulerAngles = new Vector3(0,0, Mathf.Atan2(wayPoints[i+1].y - wayPoints[i].y, wayPoints[i + 1].x - wayPoints[i].x) * 180 / Mathf.PI);
+
+
+        }
+    }
+
+    float _getToPointDistance(Vector2 v1, Vector2 v2)
+    {
+        return (Vector2.Distance(v1,v2));
     }
 
     public void _doDestroyWayPaints()
@@ -67,7 +92,11 @@ public class serializedWayPoints : MonoBehaviour
             {
                 Destroy(obj);
             }
-        
+        foreach (GameObject obj in wayPointsObjectsCurrsors)
+        {
+            Destroy(obj);
+        }
+
     }
 
     public void _doRefresh()
