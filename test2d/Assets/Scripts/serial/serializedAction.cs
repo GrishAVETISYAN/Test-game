@@ -10,7 +10,9 @@ public class serializedAction : MonoBehaviour
     Sprite zamax;
     Sprite attack;
     Sprite powerAttack;
-    
+    Sprite parirovanie;
+    Sprite shild;
+
 
 
     GameObject actionSerialized;
@@ -24,6 +26,8 @@ public class serializedAction : MonoBehaviour
         zamax = Base.spriteArray[10];
         attack = Base.spriteArray[7];
         powerAttack = Base.spriteArray[9];
+        parirovanie= Base.spriteArray[8];
+        shild = Base.spriteArray[6];
 
         actionSerialized = new GameObject();
         actionSerialized.name = "currsor";
@@ -46,9 +50,19 @@ public class serializedAction : MonoBehaviour
             actionSerializedSR.sprite = zamax;
             
         }
-        if (action ==2)
+        if (action == 2)
         {
             actionSerializedSR.sprite = attack;
+
+        }
+        if (action == 3)
+        {
+            actionSerializedSR.sprite = parirovanie;
+
+        }
+        if (action == 4)
+        {
+            actionSerializedSR.sprite = shild;
 
         }
         actionSerialized.transform.position = new Vector2(transform.position.x, transform.position.y+1);
