@@ -16,7 +16,12 @@ public class createSegmentCircle : MonoBehaviour
     void _doCreateColider()
     {
         PC.pathCount = 1;
-        PC.points = _getssCreateColider(60f,2f,6);
+        PC.points = _getProceduralCircleColider(60f,2f);
+    }
+
+    Vector2[] _getProceduralCircleColider(float alpha, float R)
+    {
+        return(_getssCreateColider(alpha, R, (int)(alpha / 10)));
     }
 
     Vector2[] _getssCreateColider(float alpha, float R, int n)
