@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class charMoveProjection : MonoBehaviour
 {
+    /*
     private void Start()
     {
+        Vector2 Vec = new Vector2(Mathf.Cos(90 * Mathf.PI / 180f), Mathf.Sin(90 * Mathf.PI / 180f));
+        Vector2 Norm = new Vector2(Mathf.Cos(-45f * Mathf.PI / 180f), Mathf.Sin(-45f * Mathf.PI / 180f));
         Debug.Log("1 Vec");
-        Debug.Log(new Vector2(Mathf.Cos(90 * Mathf.PI / 180f), Mathf.Sin(90 * Mathf.PI / 180f)));
+        Debug.Log(Vec);
         Debug.Log("1 Norm");
-        Debug.Log(new Vector2(Mathf.Cos(-45f*Mathf.PI/180f), Mathf.Sin(-45f * Mathf.PI / 180f)));
+        Debug.Log(Norm);
         Debug.Log("1 Norm");
-        Debug.Log(VecProjectino(new Vector2(Mathf.Cos(90 * Mathf.PI / 180f), Mathf.Sin(90 * Mathf.PI / 180f)), new Vector2(Mathf.Cos(-45f * Mathf.PI / 180f), Mathf.Sin(-45f * Mathf.PI / 180f))));
-    }
-    public Vector2 VecProjectino(Vector2 Vec, Vector2 Norm)
+        Debug.Log(VecProjectino(Vec, Norm));
+    }*/
+
+
+    public Vector2 _vecProjectino(Vector2 Vec, Vector2 Norm)
     {
         Vector2 projVec = new Vector2(0, 0);
         float Nalpha = Mathf.Atan2(Norm.y, Norm.x);
@@ -31,11 +36,15 @@ public class charMoveProjection : MonoBehaviour
         else
         {
             
-            float Talpha = 90 - Nalpha;
-            float PAlpha = Valpha - Talpha;
+            float TalphaDegree = (90 - NalphaDegree);
+            float PAlphaDegree = (NalphaDegree + ValphaDegree)-90f;
+            
+            float Talpha = TalphaDegree * Mathf.PI / 180f;
+            float PAlpha = PAlphaDegree * Mathf.PI / 180f;
+            
 
             float Vlen = 1;//im vectori erkarutyuny misht 1 e
-            float k = Vlen * Mathf.Cos(PAlpha);
+            float k = Vlen * Mathf.Sin(PAlpha);
             projVec = new Vector2(k * Mathf.Cos(Talpha), k * Mathf.Sin(Talpha));
 
         }
