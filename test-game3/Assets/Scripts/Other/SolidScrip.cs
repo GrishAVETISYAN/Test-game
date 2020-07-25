@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class SolidScrip : MonoBehaviour
 {
-    // Start is called before the first frame update
+    Vector2 Normal;
+    bool rendering = false;
+    SpriteRenderer SR;
     void Start()
     {
-        
+        SR = GetComponent<SpriteRenderer>();
+        _doRefreshNormal();
+        _doRefreshRendering();
     }
 
-    // Update is called once per frame
-    void Update()
+    
+
+    void _doRefreshNormal()
     {
-        
+        Normal = new Vector2(Mathf.Cos((transform.eulerAngles.z - 90) * Mathf.PI / 180), Mathf.Sin((transform.eulerAngles.z - 90) * Mathf.PI / 180));
     }
+    public Vector2 _GetNormal()
+    {
+        return (Normal);
+    
+    }
+
+    void _doRefreshRendering()
+    {
+        if (rendering)
+        {
+            SR.enabled = true;
+        }
+        else
+        {
+            SR.enabled = false;
+        }
+    }
+
+
 }
