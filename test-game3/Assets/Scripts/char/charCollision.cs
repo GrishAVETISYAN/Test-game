@@ -1,29 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class charCollision : MonoBehaviour
 {
-    // Start is called before the first frame update
+    charPhisicalMove CPM;
     void Start()
     {
-        
+        CPM=GetComponent<charPhisicalMove>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Enter "+collision.tag.ToString());
+        if(collision.tag.ToString() == "Solid")
+        {
+            SolidScrip SS = collision.GetComponentInParent<SolidScrip>();
+            CPM._addComponent(SS._GetNormal());
+        }
+        
     }
 
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Exit " + collision.tag.ToString());
+        if (collision.tag.ToString() == "Solid")
+        {
+            SolidScrip SS = collision.GetComponent<SolidScrip>();
+            CPM._deleteComponent(SS._GetNormal());
+        }
     }
 }

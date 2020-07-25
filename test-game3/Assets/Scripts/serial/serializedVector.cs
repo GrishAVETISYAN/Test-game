@@ -19,10 +19,11 @@ public class serializedVector : MonoBehaviour
         myCurrsor = new GameObject();
         myCurrsor.name = "currsor";
         myCurrsorSR =myCurrsor.AddComponent<SpriteRenderer>();
-        
-        myCurrsorSR.sortingOrder = 1;
 
-        
+        ZorderScript ZS = myCurrsor.AddComponent<ZorderScript>();
+        ZS.plus = 5;
+
+
     }
 
     

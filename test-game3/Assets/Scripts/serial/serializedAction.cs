@@ -33,7 +33,9 @@ public class serializedAction : MonoBehaviour
         actionSerialized.name = "currsor";
         actionSerializedSR = actionSerialized.AddComponent<SpriteRenderer>();
 
-        actionSerializedSR.sortingOrder = 1;
+
+        ZorderScript ZS = actionSerialized.AddComponent<ZorderScript>();
+        ZS.plus = 101;
     }
 
     public void _doSerializedAction(int action)

@@ -58,8 +58,9 @@ public class serializedWayPoints : MonoBehaviour
             wayPointsObjects[i].transform.position = wayPoints[i];
             if(i>= currsor) SP.sprite = wayPoint;
             else SP.sprite = wayPointTrue;
-            SP.sortingOrder = 3;
-            
+            ZorderScript ZS = wayPointsObjects[i].AddComponent<ZorderScript>();
+            ZS.plus = 5;
+
         }
         wayPointsObjectsCurrsors = new GameObject[wayPoints.Length-1];
 
@@ -70,7 +71,8 @@ public class serializedWayPoints : MonoBehaviour
             SpriteRenderer SP = wayPointsObjectsCurrsors[i].AddComponent<SpriteRenderer>();
             wayPointsObjectsCurrsors[i].transform.position = (wayPoints[i]+ wayPoints[i+1])/2;
             SP.sprite = wayPointCurrsor;
-            SP.sortingOrder = 2;
+            ZorderScript ZS = wayPointsObjectsCurrsors[i].AddComponent<ZorderScript>();
+            ZS.plus = 5;
             SP.drawMode = SpriteDrawMode.Tiled;
             SP.size = new Vector2(_getToPointDistance(wayPoints[i], wayPoints[i + 1]), SP.size.y);
             
