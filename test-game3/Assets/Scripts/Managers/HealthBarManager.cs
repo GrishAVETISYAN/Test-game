@@ -167,7 +167,7 @@ public class HealthBarManager : MonoBehaviour
             ManaPointTimer = 0;
         }
         if (ManaPoint < 0) ManaPoint = 0;
-        if (ManaPoint > ManaMax) ManaPoint = ManaPointMax;
+        if (ManaPoint > ManaPointMax) ManaPoint = ManaPointMax;
     }
 
 
