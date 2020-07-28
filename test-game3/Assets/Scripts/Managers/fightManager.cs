@@ -28,6 +28,7 @@ public class fightManager : MonoBehaviour
     void Start()
     {
         SA = GetComponent<serializedAction>();
+        SA._doBegin();
     }
 
     // Update is called once per frame

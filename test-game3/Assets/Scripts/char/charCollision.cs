@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class charCollision : MonoBehaviour
 {
-    charPhisicalMove CPM;
-    void Start()
+    playerManager PM;
+    public void _doBegin()
     {
-        CPM=GetComponent<charPhisicalMove>();
+        PM=GetComponent<playerManager>();
     }
 
    
@@ -18,7 +18,7 @@ public class charCollision : MonoBehaviour
         if(collision.tag.ToString() == "Solid")
         {
             SolidScrip SS = collision.GetComponentInParent<SolidScrip>();
-            CPM._addComponent(SS._GetNormal());
+            PM._addComponentOnCharPhisicalMove(SS._GetNormal());
         }
         
     }
@@ -29,7 +29,7 @@ public class charCollision : MonoBehaviour
         if (collision.tag.ToString() == "Solid")
         {
             SolidScrip SS = collision.GetComponent<SolidScrip>();
-            CPM._deleteComponent(SS._GetNormal());
+            PM._deleteComponentOnCharPhisicalMove(SS._GetNormal());
         }
     }
 }

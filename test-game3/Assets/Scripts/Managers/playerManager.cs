@@ -6,8 +6,9 @@ public class playerManager : MonoBehaviour
     charControll CC;
     serializedVector SV;
     charPhisicalMove CPM;
-    Vector2 CC_moveVector;
-
+    charCollision CCs;
+    
+    
     void Start()
     {
 
@@ -15,6 +16,12 @@ public class playerManager : MonoBehaviour
         CC = GetComponent<charControll>();
         SV = GetComponent<serializedVector>();
         CPM = GetComponent<charPhisicalMove>();
+        CCs = GetComponent<charCollision>();
+
+        SV._doBegin();
+        CPM._doBegin();
+        CCs._doBegin();
+
     }
 
     
@@ -22,9 +29,20 @@ public class playerManager : MonoBehaviour
     {   
        
 
-        CC_moveVector = CPM._GetMoveVector(CC._getVector());
+        Vector2 CC_moveVector = CPM._GetMoveVector(CC._getVector());
 
         CM._doMove              (CC_moveVector);
         SV._doSerializedVector  (CC_moveVector);
+    }
+
+
+    public void _addComponentOnCharPhisicalMove(Vector2 norm)
+    {
+        CPM._addComponent(norm);
+    }
+    public void _deleteComponentOnCharPhisicalMove(Vector2 norm)
+    {
+        CPM._deleteComponent(norm);
+        
     }
 }

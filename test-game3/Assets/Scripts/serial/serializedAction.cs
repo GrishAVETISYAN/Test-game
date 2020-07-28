@@ -19,7 +19,7 @@ public class serializedAction : MonoBehaviour
     SpriteRenderer actionSerializedSR;
     
 
-    void Start()
+    public void _doBegin()
     {
         Base = Camera.main.GetComponent<dataBaseSprites>();
         stop = Base.spriteArray[11];

@@ -10,7 +10,7 @@ public class serializedVector : MonoBehaviour
     GameObject myCurrsor;
     SpriteRenderer myCurrsorSR;
     float alpha;
-    void Start()
+    public void _doBegin()
     {
         Base = Camera.main.GetComponent<dataBaseSprites>();
         currsor = Base.spriteArray[0];

@@ -6,9 +6,9 @@ public class charPhisicalMove : MonoBehaviour
 {
 
     charMoveProjection CMP;
-    public List<Vector2> testList = new List<Vector2>();
+    List<Vector2> testList = new List<Vector2>();
 
-    private void Start()
+    public void _doBegin()
     {
         CMP = GetComponent<charMoveProjection>();
     }
