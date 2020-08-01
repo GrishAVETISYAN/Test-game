@@ -18,7 +18,7 @@ public class serializedWayFinderGird : MonoBehaviour
     
 
 
-    public void _Do_Text(bool[,] closes, int[,]  sideStep, int[,]  sideDistanceToTarget, int[,] sideSideWeight)
+    public void _Do_Text(bool[,] closes, bool[,] blockBase, int[,]  sideStep, int[,]  sideDistanceToTarget, int[,] sideSideWeight, int[,] sideDir)
     {
         int len_x = closes.GetLength(1);
         int len_y = closes.GetLength(0);
@@ -29,11 +29,24 @@ public class serializedWayFinderGird : MonoBehaviour
             {
                 Text txt = texts[y, x];
                 txt.text = "<color=white>("+x.ToString()+"," + y.ToString()+ ")</color>";
-                if(closes[y, x])    txt.text += "<color=green> True </color>";
-                else                txt.text += "<color=red> False </color>";
+                if(closes[y, x])    txt.text += "<color=white> True </color>";
+                else                txt.text += "<color=black> False </color>";
                 if (sideStep[y, x] != -1) txt.text += "\n<color=yellow>" + sideStep[y, x].ToString() + "</color>";
                 if (sideDistanceToTarget[y, x] != -1) txt.text += "    <color=blue>" + sideDistanceToTarget[y, x].ToString() + "</color>";
                 if (sideSideWeight[y, x] != -1) txt.text += "    <color=red>" + sideSideWeight[y, x].ToString() + "</color>";
+
+                if (blockBase[y, x]) txt.text += "\n<color=green> Open! </color>";
+                else txt.text += "\n<color=red> Close! </color>";
+
+                if (sideDir[y, x]==1) txt.text += "\n<color=purple>L</color>";
+                else if (sideDir[y, x] == 2) txt.text += "\n<color=purple>LU</color>";
+                else if (sideDir[y, x] == 3) txt.text += "\n<color=purple>U</color>";
+                else if (sideDir[y, x] == 4) txt.text += "\n<color=purple>RU</color>";
+                else if (sideDir[y, x] == 5) txt.text += "\n<color=purple>R</color>";
+                else if (sideDir[y, x] == 6) txt.text += "\n<color=purple>RD</color>";
+                else if (sideDir[y, x] == 7) txt.text += "\n<color=purple>D</color>";
+                else if (sideDir[y, x] == 8) txt.text += "\n<color=purple>LD</color>";
+
             }
         }
     }
@@ -71,7 +84,7 @@ public class serializedWayFinderGird : MonoBehaviour
 
                 ZorderScript ZS = GirdCell.AddComponent<ZorderScript>();
                 ZS.plus = -96/2;
-                GirdCell.transform.position = new Vector2(x* cells_distance,y* cells_distance);
+                GirdCell.transform.position = new Vector2(x * cells_distance,y* cells_distance);
                 GirdCell.transform.parent = mainGird.transform;
                 if (x == _start_pos_x && y == _start_pos_y)
                 {

@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class botManager : MonoBehaviour
+public class botMoveManager : MonoBehaviour
 {
     charMove CM;
     charGoTo CGT;
     serializedVector SV;
-    
+
     charWayPoints CWP;
     serializedWayPoints SWP;
 
-    public Vector2[] wayPoints= { new Vector2(0, 0), new Vector2(1, 0),new Vector2(0, 1) };
-    public int wayPointsCurrsor = 0;
+    wayFindPositionSystem WFPS;
+
+    [SerializeField]    Vector2[] wayPoints;
+    [SerializeField]    int wayPointsCurrsor = 0;
+
+
+    [SerializeField]    GameObject targetWayFindObj;
+    [SerializeField]    GameObject startWayFindObj;
 
     void Start()
     {
@@ -24,18 +30,31 @@ public class botManager : MonoBehaviour
         CWP = GetComponent<charWayPoints>();
         SWP = GetComponent<serializedWayPoints>();
 
-        _doStartGoToWayPoints(wayPoints, wayPointsCurrsor);
+        WFPS = Camera.main.GetComponent<wayFindPositionSystem>(); ;
+
+        SV._doBegin();
+
+
+        
 
     }
 
     
     void Update()
     {
+        if (Input.GetKeyDown("space"))
+        {
+            wayPoints = WFPS._retAStarCoords(targetWayFindObj.transform.position,startWayFindObj.transform.position);
+            _doStartGoToWayPoints(wayPoints, wayPointsCurrsor);
+        }
+        if (Input.GetKey("space"))
+        {
+            _doLoopGoToWayPoints(wayPoints, wayPointsCurrsor);
+        }
 
+        
 
-        _doLoopGoToWayPoints(wayPoints, wayPointsCurrsor);
-
-
+        
 
 
 
@@ -85,12 +104,15 @@ public class botManager : MonoBehaviour
 
     void __doAddCurrsor()
     {
-        if (wayPointsCurrsor == wayPoints.Length - 1)
+        if (wayPoints!= null)
         {
-            //end = true;
-            wayPointsCurrsor++;
+            if (wayPointsCurrsor == wayPoints.Length - 1)
+            {
+                //end = true;
+                wayPointsCurrsor++;
+            }
+            else
+                wayPointsCurrsor++;
         }
-        else
-            wayPointsCurrsor++;
     }
 }
