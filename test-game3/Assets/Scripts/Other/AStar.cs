@@ -32,15 +32,27 @@ public class AStar : MonoBehaviour
     //bool[,] check = new bool[closes.GetLength(0), closes.GetLength(1)];
 
 
-    Coords start_pos    = new Coords(1, 2);
-    Coords target_pos   = new Coords(5, 2);
+    Coords start_pos;
+    Coords target_pos;
 
 
-    public List<Coords>  findWay(bool[,] _closesBase)
+    public void _AddStartTargetCoord(int start_pos_x, int start_pos_y, int target_pos_x, int target_pos_y)
+    {
+        start_pos = new Coords(start_pos_x, start_pos_y);
+        target_pos = new Coords(target_pos_x, target_pos_y);
+        Debug.Log("A* AddStartTargetCord"+start_pos.ToString()+" " + target_pos.ToString());
+    }
+    public void _AddClosesBas(bool[,] _closesBase)
     {
         closesBase = _closesBase;
+    }
+    public Coords[]  _findWay()
+    {
+        
         lenX = closesBase.GetLength(1);
         lenY = closesBase.GetLength(0);
+        Debug.Log("A* lenX lenY" + lenX.ToString() + " " + lenY.ToString());
+
 
         blockBase = new bool[lenY, lenX];
         sideStepBase = new int[lenY, lenX];
@@ -73,27 +85,29 @@ public class AStar : MonoBehaviour
        List<AStarStruct> AStartStructList = get_side(start_pos);
        change_side(AStartStructList);
        block(start_pos);
-
-
-       List<Coords> minCoords;
-       minCoords = ret_coord_by_weight(find_min_weight());
         
-       bool b = check_0();
+
+
+        List<Coords> minCoords;
+       minCoords = ret_coord_by_weight(find_min_weight());
+        Debug.Log("A* start min weight" + find_min_weight());
+
+        bool b = check_0();
 
 
 
         while (!b) {
 
-            if (minCoords.Count == 0)
+            if (minCoords == null)
             {
-                // inchvor ban anel. bayc chi kara senc ban lini
+                Debug.Log("Break");
+                break;// inchvor ban anel. bayc chi kara senc ban lini
             }
-            else if (minCoords.Count >= 1)
-            {
-                AStartStructList = get_side(minCoords[0]);
-                change_side(AStartStructList);
-                block(minCoords[0]);
-            }
+            
+            AStartStructList = get_side(minCoords[0]);
+            change_side(AStartStructList);
+            block(minCoords[0]);
+            
             
 
             minCoords = ret_coord_by_weight(find_min_weight());
@@ -148,19 +162,26 @@ public class AStar : MonoBehaviour
 
         }
 
-
+        
         foreach(Coords cd in wayFinder)
         {
-            Debug.Log(cd);
+            Debug.Log("A* debug:"+cd);
         }
 
-       return (wayFinder);
-       //serializedWayFinderGird SWFG = GetComponent<serializedWayFinderGird>();
-       //SWFG._Do_create_gird(new Vector2(0, 0), 1f, closesBase, start_pos.x, start_pos.y, target_pos.x, target_pos.y);
-       //SWFG._Do_Text(closesBase, blockBase, sideStepBase, sideSideDistanceToTargetBase, sideSideWeightBase, sideSideDir);
+
+        //serializedWayFinderGird SWFG = GetComponent<serializedWayFinderGird>();
+        //SWFG._Do_create_gird(new Vector2(0, 0), 1f, closesBase, start_pos.x, start_pos.y, target_pos.x, target_pos.y);
+        //SWFG._Do_Text(closesBase, blockBase, sideStepBase, sideSideDistanceToTargetBase, sideSideWeightBase, sideSideDir);
+
+        return (wayFinder.ToArray());
+       
        
 
     }
+
+
+
+
 
     bool check_0()
     {
@@ -203,6 +224,11 @@ public class AStar : MonoBehaviour
     }
     List<Coords> ret_coord_by_weight(int sum)
     {
+        if(sum == -1)
+        {
+            Debug.Log("-1!!!!");
+            return (null);
+        }
         List<Coords> ret = new List<Coords>();
         for (int y = 0; y < lenY; y++)
         {
@@ -217,8 +243,6 @@ public class AStar : MonoBehaviour
 
         return (ret);
     }
-    
-
 
     void block(Coords block_position)
     {
@@ -359,7 +383,7 @@ public class AStar : MonoBehaviour
         }
         if (find_position.y < array_size.y - 1)
         {
-            if (closesBase[find_position.y + 1, find_position.x] && blockBase[find_position.y+1, find_position.x + 1])
+            if (closesBase[find_position.y + 1, find_position.x] && blockBase[find_position.y+1, find_position.x])
             {
                 AStartStructList.Add(
                     new AStarStruct(
@@ -390,7 +414,6 @@ public class AStar : MonoBehaviour
         }
         return (AStartStructList);
     }
-
 
     struct AStarStruct
     {

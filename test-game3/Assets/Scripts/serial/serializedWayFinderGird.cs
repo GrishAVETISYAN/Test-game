@@ -84,7 +84,7 @@ public class serializedWayFinderGird : MonoBehaviour
 
                 ZorderScript ZS = GirdCell.AddComponent<ZorderScript>();
                 ZS.plus = -96/2;
-                GirdCell.transform.position = new Vector2(x* cells_distance,y* cells_distance);
+                GirdCell.transform.position = new Vector2(x * cells_distance,y* cells_distance);
                 GirdCell.transform.parent = mainGird.transform;
                 if (x == _start_pos_x && y == _start_pos_y)
                 {

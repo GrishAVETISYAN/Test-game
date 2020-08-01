@@ -8,16 +8,7 @@ public class charWayPoints : MonoBehaviour
     Vector2[] WPs= {new Vector2(0,-1), new Vector2(1, 1), new Vector2(-1, 1) };
     int curssor = 0;
     [SerializeField]bool end = false;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public bool _getWayPointsEnd()
     {
