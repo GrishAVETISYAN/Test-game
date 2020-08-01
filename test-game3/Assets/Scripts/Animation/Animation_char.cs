@@ -9,11 +9,11 @@ public class Animation_char : MonoBehaviour
 
      /*void Start() 
     {
-        animation_player("walk", 0, 2);     
+        _animation_player("walk", 0, 2);     
     }
     */
 
-    void animation_player(string name, int playTime, float speed)
+    void _animation_player(string name, int playTime, float speed)
     {
         anim.animation.timeScale = speed;
         anim.animation.Play(name, playTime);
