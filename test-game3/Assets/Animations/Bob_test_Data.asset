@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bob_test_Data
   m_EditorClassIdentifier: 
   dataName: Bob_test
-  dragonBonesJSON: {fileID: 4900000, guid: 15222ad91ef36984d99783b03345d1ec, type: 3}
+  dragonBonesJSON: {fileID: 4900000, guid: bdae71e35f0a30d47b3e6ccec4ce2cfa, type: 3}
   textureAtlas:
-  - textureAtlasJSON: {fileID: 4900000, guid: 529ac6f7398381c429a80754a9ff02c9, type: 3}
-    texture: {fileID: 2800000, guid: 4f4d06f69aedcf249b6f29b672a6e348, type: 3}
-    material: {fileID: 2100000, guid: 732736910d0200949b8cae61321cf5c5, type: 2}
+  - textureAtlasJSON: {fileID: 4900000, guid: d8b66dcdf0371e54a9d962fdaea21ee7, type: 3}
+    texture: {fileID: 2800000, guid: 57efb14f3b2f2ca469dcbd3c25f77a93, type: 3}
+    material: {fileID: 2100000, guid: ff1dfa0299986994eb91d60a1cd08c0d, type: 2}
     uiMaterial: {fileID: 0}

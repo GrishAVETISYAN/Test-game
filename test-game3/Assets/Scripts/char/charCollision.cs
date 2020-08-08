@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class charCollision : MonoBehaviour
 {
-    playerManager PM;
+    playerMoveManager PM;
     public void _doBegin()
     {
-        PM=GetComponent<playerManager>();
+        PM=GetComponent<playerMoveManager>();
     }
 
    

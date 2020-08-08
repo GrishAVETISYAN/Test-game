@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class playerManager : MonoBehaviour
+public class playerMoveManager : MonoBehaviour
 {
     charMove CM;
     charControll CC;

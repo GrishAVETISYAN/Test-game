@@ -30,9 +30,9 @@ public class wayFindPositionSystem : MonoBehaviour
 
     }
 
-    public Vector2[] _retAStarCoords( Vector2 target, Vector2 start)
+    public Vector2[] _retAStarCoords( Vector2 target, Vector2 _start)
     {
-
+        Vector2 start = new Vector2(_start.x+0.5f, _start.y+0.5f);
         As._AddClosesBas(closes);
         
         As._AddStartTargetCoord((int)((  target.x- zero_pos_obj_pos.x) / distance), (int)((  target.y- zero_pos_obj_pos.y) / distance), (int)((start.x- zero_pos_obj_pos.x ) /distance), (int)(( start.y- zero_pos_obj_pos.y) / distance));
@@ -46,7 +46,9 @@ public class wayFindPositionSystem : MonoBehaviour
 
         Vector2[] _retData = retData;
 
-        
+        _retData[0] = _start;
+        _retData[_retData.Length - 1] = target;
+
         return (retData);
     }
 
@@ -74,6 +76,7 @@ public class wayFindPositionSystem : MonoBehaviour
             }
         }
     }
+    
     
 
 }

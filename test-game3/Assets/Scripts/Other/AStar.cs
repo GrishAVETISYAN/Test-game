@@ -40,7 +40,7 @@ public class AStar : MonoBehaviour
     {
         start_pos = new Coords(start_pos_x, start_pos_y);
         target_pos = new Coords(target_pos_x, target_pos_y);
-        Debug.Log("A* AddStartTargetCord"+start_pos.ToString()+" " + target_pos.ToString());
+        //Debug.Log("A* AddStartTargetCord"+start_pos.ToString()+" " + target_pos.ToString());
     }
     public void _AddClosesBas(bool[,] _closesBase)
     {
@@ -51,7 +51,7 @@ public class AStar : MonoBehaviour
         
         lenX = closesBase.GetLength(1);
         lenY = closesBase.GetLength(0);
-        Debug.Log("A* lenX lenY" + lenX.ToString() + " " + lenY.ToString());
+        //Debug.Log("A* lenX lenY" + lenX.ToString() + " " + lenY.ToString());
 
 
         blockBase = new bool[lenY, lenX];
@@ -90,17 +90,17 @@ public class AStar : MonoBehaviour
 
         List<Coords> minCoords;
        minCoords = ret_coord_by_weight(find_min_weight());
-        Debug.Log("A* start min weight" + find_min_weight());
+        //Debug.Log("A* start min weight" + find_min_weight());
 
         bool b = check_0();
 
 
-
+        int brk = 200;
         while (!b) {
 
             if (minCoords == null)
             {
-                Debug.Log("Break");
+                //Debug.Log("Break");
                 break;// inchvor ban anel. bayc chi kara senc ban lini
             }
             
@@ -112,7 +112,14 @@ public class AStar : MonoBehaviour
 
             minCoords = ret_coord_by_weight(find_min_weight());
             b = check_0();
-
+            if(brk > 0)
+            {
+                brk -= 1;
+            }
+            else
+            {
+                break;
+            }
 
         }
 
@@ -122,7 +129,7 @@ public class AStar : MonoBehaviour
         Coords last = wayFinder[wayFinder.Count - 1];
 
 
-
+        brk = 200;
         while (last.x != start_pos.x || last.y != start_pos.y)
         {
             if (sideSideDir[last.y, last.x] == 1)
@@ -158,17 +165,25 @@ public class AStar : MonoBehaviour
                 last = new Coords(last.x - 1, last.y - 1);
             }
             wayFinder.Add(last);
-            
 
+
+            if (brk > 0)
+            {
+                brk -= 1;
+            }
+            else
+            {
+                break;
+            }
         }
 
         
         foreach(Coords cd in wayFinder)
         {
-            Debug.Log("A* debug:"+cd);
+            //Debug.Log("A* debug:"+cd);
         }
 
-
+        //serialized
         //serializedWayFinderGird SWFG = GetComponent<serializedWayFinderGird>();
         //SWFG._Do_create_gird(new Vector2(0, 0), 1f, closesBase, start_pos.x, start_pos.y, target_pos.x, target_pos.y);
         //SWFG._Do_Text(closesBase, blockBase, sideStepBase, sideSideDistanceToTargetBase, sideSideWeightBase, sideSideDir);
@@ -182,7 +197,7 @@ public class AStar : MonoBehaviour
 
 
 
-
+    
     bool check_0()
     {
         bool b = false;

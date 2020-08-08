@@ -42,6 +42,7 @@ public class charWayPoints : MonoBehaviour
 
     }
 
+    
     public void _doSetPositions(Vector2[] _wayPoints)
     {
         WPs = _wayPoints;
@@ -54,7 +55,7 @@ public class charWayPoints : MonoBehaviour
 
     public void _doSetPositionsAndCurrsor(Vector2[] _wayPoints,int _currsor)
     {
-
+        end = false;
         _doSetPositions(_wayPoints);
         _doSetCurrsor(_currsor);
     }

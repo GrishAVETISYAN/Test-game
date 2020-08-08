@@ -14,8 +14,8 @@ public class serializedWayPoints : MonoBehaviour
     Vector2[] wayPoints;
     int currsor;
 
-    GameObject[] wayPointsObjects;
-    GameObject[] wayPointsObjectsCurrsors;
+    public GameObject[] wayPointsObjects;
+    public GameObject[] wayPointsObjectsCurrsors;
     void Awake()
     {
         Base = Camera.main.GetComponent<dataBaseSprites>();
@@ -89,15 +89,16 @@ public class serializedWayPoints : MonoBehaviour
 
     public void _doDestroyWayPaints()
     {
-        
+        if(wayPointsObjects != null)
             foreach (GameObject obj in wayPointsObjects)
             {
                 Destroy(obj);
             }
-        foreach (GameObject obj in wayPointsObjectsCurrsors)
-        {
-            Destroy(obj);
-        }
+        if (wayPointsObjectsCurrsors != null)
+            foreach (GameObject obj in wayPointsObjectsCurrsors)
+            {
+                Destroy(obj);
+            }
 
     }
 

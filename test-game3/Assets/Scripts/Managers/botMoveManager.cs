@@ -18,10 +18,10 @@ public class botMoveManager : MonoBehaviour
     [SerializeField]    int wayPointsCurrsor = 0;
 
 
-    [SerializeField]    GameObject targetWayFindObj;
-    [SerializeField]    GameObject startWayFindObj;
+    [SerializeField]    Vector2 targetWayFindPos;
+    
 
-    void Start()
+    public void _botMoveManagerInit()
     {
         CM = GetComponent<charMove>();
         CGT = GetComponent<charGoTo>();
@@ -39,27 +39,30 @@ public class botMoveManager : MonoBehaviour
 
     }
 
-    
-    void Update()
+
+    public void _botMoveManagerLoop(Vector2 tagetPos)
     {
-        if (Input.GetKeyDown("space"))
-        {
-            wayPoints = WFPS._retAStarCoords(targetWayFindObj.transform.position,startWayFindObj.transform.position);
-            _doStartGoToWayPoints(wayPoints, wayPointsCurrsor);
-        }
-        if (Input.GetKey("space"))
-        {
+        if(wayPoints.Length > 0) {
+            wayPoints[wayPoints.Length - 1] = tagetPos;
             _doLoopGoToWayPoints(wayPoints, wayPointsCurrsor);
         }
 
-        
-
-        
-
-
-
     }
 
+    public void _changeTargetPosition(Vector2 _targetWayFindPos)
+    {
+        targetWayFindPos = _targetWayFindPos;
+        wayPoints = WFPS._retAStarCoords(targetWayFindPos, new Vector2(transform.position.x, transform.position.y));
+
+        
+
+
+        wayPointsCurrsor = 0;
+        
+        _doStartGoToWayPoints(wayPoints, wayPointsCurrsor);
+    }
+
+    
     void _doLoopGoToWayPoints(Vector2[] _wayPoints, int _wayPointsCurrsor)//Go to way points loop
     {
 
@@ -89,6 +92,7 @@ public class botMoveManager : MonoBehaviour
         CWP._doSetPositionsAndCurrsor(_wayPoints, _wayPointsCurrsor);
         SWP._doSetPositionsAndCurrsor(_wayPoints, _wayPointsCurrsor);
 
+        SWP._doDestroyWayPaints();
         SWP._doCreateWayPoints();
     }
     void _doLoopGoToPosition(Vector2 targetPosition)//Go to position Loop

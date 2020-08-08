@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Solid
+  - Char
+  - Spikes
   layers:
   - Default
   - TransparentFX

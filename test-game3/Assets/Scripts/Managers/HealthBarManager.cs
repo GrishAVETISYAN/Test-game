@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class HealthBarManager : MonoBehaviour
 {
+
+    public GameObject CHG;
+    charHealth CH;
+
+
     public GameObject HealthBar;
     public GameObject HealthBleckBar;
     public Text HealtText;
@@ -13,11 +18,11 @@ public class HealthBarManager : MonoBehaviour
     SpriteRenderer HealthBleckBarRenderer;
     float HealthBarLenght;
     int healthMax = 1000;
-    public int health = 1000;
+    int health = 1000;
     int healthBleck = 1000;
 
 
-
+    
 
 
     public GameObject BalanceBar;
@@ -28,7 +33,7 @@ public class HealthBarManager : MonoBehaviour
     SpriteRenderer BalanceBleckBarRenderer;
     float BalanceBarLenght;
     int BalanceMax = 800;
-    public int Balance = 800;
+    int Balance = 800;
     int BalanceBleck = 800;
 
 
@@ -40,7 +45,7 @@ public class HealthBarManager : MonoBehaviour
     SpriteRenderer ManaBleckBarRenderer;
     float ManaBarLenght;
     int ManaMax = 200;
-    public int Mana = 200;
+    int Mana = 200;
     int ManaBleck = 200;
 
 
@@ -52,12 +57,28 @@ public class HealthBarManager : MonoBehaviour
     SpriteRenderer ManaPointBleckBarRenderer;
     float ManaPointBarLenght;
     int ManaPointMax = 5;
-    public int ManaPoint = 5;
+    int ManaPoint = 5;
     int ManaPointBleck = 5;
 
 
     void Start()
     {
+        CH = CHG.GetComponent<charHealth>();
+        healthMax = CH.HealthMax;
+        health = CH.Health;
+        healthBleck = CH.Health;
+
+
+
+        BalanceMax = CH.BalanceMax;
+        Balance = CH.Balance;
+        BalanceBleck = CH.Balance;
+
+        ManaMax = CH.ManaMax;
+        Mana = CH.Mana;
+        ManaBleck = CH.Mana;
+
+
         HealthBarRenderer = HealthBar.GetComponent<SpriteRenderer>();
         HealthBleckBarRenderer = HealthBleckBar.GetComponent<SpriteRenderer>();
         HealthBarLenght = HealthBarRenderer.size.x;
@@ -78,6 +99,15 @@ public class HealthBarManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
+        health = CH.Health;
+
+        Balance = CH.Balance;
+
+        Mana = CH.Mana;
+
+
         HealtText.text = healthMax.ToString() + "/" + health.ToString();
         HealthBarRenderer.size = new Vector2(((float)health / (float)healthMax) * HealthBarLenght, HealthBarRenderer.size.y);
         HealthBleckBarRenderer.size = new Vector2(((float)healthBleck / (float)healthMax) * HealthBarLenght, HealthBarRenderer.size.y);
