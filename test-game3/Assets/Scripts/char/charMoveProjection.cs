@@ -6,7 +6,7 @@ using UnityEngine;
 public class charMoveProjection : MonoBehaviour
 {
 
-    public Vector2 _vecProjectino(Vector2 Vec, Vector2 Norm)
+    public Vector2 _vecProjectino(Vector2 Vec, Vector2 Norm) //Returns a projection vector that prevents you from hitting solid objects.
     {
         Vector2 projVec = new Vector2(0, 0);
         float Nalpha = Mathf.Atan2(Norm.y, Norm.x);
