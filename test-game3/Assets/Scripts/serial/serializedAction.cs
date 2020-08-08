@@ -30,9 +30,11 @@ public class serializedAction : MonoBehaviour
         shild = Base.spriteArray[6];
 
         actionSerialized = new GameObject();
-        actionSerialized.name = "currsor";
+        actionSerialized.name = "Action";
         actionSerializedSR = actionSerialized.AddComponent<SpriteRenderer>();
 
+        actionSerialized.transform.position = gameObject.transform.position;
+        actionSerialized.transform.parent = transform;
 
         ZorderScript ZS = actionSerialized.AddComponent<ZorderScript>();
         ZS.plus = 101;
@@ -40,7 +42,7 @@ public class serializedAction : MonoBehaviour
 
     public void _doSerializedAction(int action)
     {
-        actionSerialized.transform.position = gameObject.transform.position;
+       
 
         if (action==0)
         {

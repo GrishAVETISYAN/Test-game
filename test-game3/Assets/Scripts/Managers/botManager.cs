@@ -6,28 +6,46 @@ using UnityEngine;
 public class botManager : MonoBehaviour
 {
     public GameObject Target;
+    GameObject TargetPoint;
+    
 
     botMoveManager BMM;
 
+    [SerializeField]int Behaviour = 1;//0-ban chi anum , 1-qayluma playeri pointi hetevic
+
     private void Start()
     {
-        
+
         
     }
     private void Update()
     {
+
         if (Input.GetKeyDown("space"))
         {
-            BMM = GetComponent<botMoveManager>();
-            BMM._botMoveManagerInit();
-            BMM._changeTargetPosition(Target.transform.position);
-            _initTarget();
+            
+            TargetPoint = Target.GetComponent<playerFightPlease>().getPoint(gameObject);
+            if (TargetPoint == null)
+            {
+                Behaviour = 0;
+            }
+                if (Behaviour == 1)
+            {
+                
+                BMM = GetComponent<botMoveManager>();
+                BMM._botMoveManagerInit();
+                BMM._changeTargetPosition(TargetPoint.transform.position);
+                _initTarget();
+            }
 
         }
 
         if (Input.GetKey("space"))
         {
-            BMM._botMoveManagerLoop(Target.transform.position);
+            if (Behaviour == 1)
+            {
+                BMM._botMoveManagerLoop(TargetPoint.transform.position);
+            }
         }
     }
 
@@ -50,10 +68,10 @@ public class botManager : MonoBehaviour
 
     void _initTarget()
     {
-        Target.GetComponent<translateEvent>()._addToBotManagerList(this);
+        Target.GetComponentInParent<translateEvent>()._addToBotManagerList(this);
     }
     void _destroyTarget()
     {
-        Target.GetComponent<translateEvent>()._removeToBotManagerList(this);
+        Target.GetComponentInParent<translateEvent>()._removeToBotManagerList(this);
     }
 }

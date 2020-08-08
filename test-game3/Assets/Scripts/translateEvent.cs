@@ -40,7 +40,7 @@ public class translateEvent : MonoBehaviour
         {
             BM._refresh();
         }
-        Debug.Log("event");
+        //Debug.Log("event");
     }
 
 

@@ -16,7 +16,7 @@ public class Animation_char : MonoBehaviour
     public void _animation_player(string name, float speed, int playTime=0)
     {
         anim.animation.timeScale = speed;
-        anim.animation.Play(name, playTime);
+        anim.animation.FadeIn(name, 0.5f, playTime);
     }
 
     public void _animation_flip(bool flip)

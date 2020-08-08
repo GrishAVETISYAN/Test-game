@@ -23,13 +23,16 @@ public class serializedVector : MonoBehaviour
         ZorderScript ZS = myCurrsor.AddComponent<ZorderScript>();
         ZS.plus = 5;
 
+        myCurrsor.transform.position = gameObject.transform.position;
+        myCurrsor.transform.parent = transform;
+
 
     }
 
     
     public void _doSerializedVector(Vector2 vector)
     {
-        myCurrsor.transform.position = gameObject.transform.position;
+        
 
         if(vector != new Vector2(0, 0))
         {

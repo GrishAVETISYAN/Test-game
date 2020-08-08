@@ -67,7 +67,7 @@ public class wayFindPositionSystem : MonoBehaviour
         len_y = (int)(max_pos_obj_pos.y / distance) - (int)(zero_pos_obj_pos.y / distance) + 1;
 
         closes = new bool[len_y, len_x];
-        Debug.Log("closes len"+len_x.ToString() +" "+len_y.ToString());
+        //Debug.Log("closes len"+len_x.ToString() +" "+len_y.ToString());
         for (int y = 0; y < len_y; y++)
         {
             for (int x = 0; x < len_x; x++)
