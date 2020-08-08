@@ -78,6 +78,11 @@ public class fightManager : MonoBehaviour
 
 
     }
+
+    public int _getAttackStatus()
+    {
+        return (actionMode);
+    }
     void _doIdle()
     {
         

@@ -7,8 +7,10 @@ public class playerMoveManager : MonoBehaviour
     serializedVector SV;
     charPhisicalMove CPM;
     charCollision CCs;
-    
-    
+
+    bool isMoved = false;
+    bool side = false;
+
     void Start()
     {
 
@@ -26,15 +28,31 @@ public class playerMoveManager : MonoBehaviour
 
     
     void Update()
-    {   
-       
-
+    {
         Vector2 CC_moveVector = CPM._GetMoveVector(CC._getVector());
+        CM._doMove(CC_moveVector);
+        SV._doSerializedVector(CC_moveVector);
 
-        CM._doMove              (CC_moveVector);
-        SV._doSerializedVector  (CC_moveVector);
+
+
+
+        if (CC_moveVector == new Vector2(0, 0)) isMoved = false;
+        else isMoved = true;
+        side = CC._getSide();
+        
+
+
+        
     }
 
+    public bool getIsMoved()
+    {
+        return (isMoved);
+    }
+    public bool getSide()
+    {
+        return (side);
+    }
 
     public void _addComponentOnCharPhisicalMove(Vector2 norm)
     {

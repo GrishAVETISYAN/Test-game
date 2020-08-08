@@ -3,7 +3,7 @@
 public class charControll : MonoBehaviour
 {
     float sqrt2_2 = 0.70710678118f;
-    
+    bool side = false;
 
     public Vector2 _getVector()
     {
@@ -13,6 +13,15 @@ public class charControll : MonoBehaviour
         bool bS = Input.GetKey(KeyCode.S);
         bool bD = Input.GetKey(KeyCode.D);
 
+        if (bA)
+        {
+            side = true;
+        }
+        if(bD)
+        {
+            side = false;
+        }
+        
         int trueCount = 0;
         if (bW) trueCount++;
         if (bA) trueCount++;
@@ -23,5 +32,10 @@ public class charControll : MonoBehaviour
         else if (trueCount == 1 || trueCount == 3) _moveVector = new Vector2((bD ? 1 : 0) - (bA ? 1 : 0), (bW ? 1 : 0) - (bS ? 1 : 0));
         else if (trueCount == 2) _moveVector = new Vector2(sqrt2_2 * (bD ? 1 : 0) - sqrt2_2 * (bA ? 1 : 0), sqrt2_2 * (bW ? 1 : 0) - sqrt2_2 * (bS ? 1 : 0));
         return (_moveVector);
+    }
+
+    public bool _getSide()
+    {
+        return (side);
     }
 }
