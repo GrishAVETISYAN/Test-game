@@ -13,10 +13,16 @@ public class Animation_char : MonoBehaviour
     }
     */
 
-    void _animation_player(string name, int playTime, float speed)
+    public void _animation_player(string name, float speed, int playTime=0)
     {
         anim.animation.timeScale = speed;
         anim.animation.Play(name, playTime);
+    }
+
+    public void _animation_flip(bool flip)
+    {
+        anim.armature.flipX = flip;
+        
     }
 
 }
