@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a64e5b0e436d4bed9780211ae245f7b, type: 3}
-  m_Name: Bob_test_Data
+  m_Name: Bob_armature_finished_Data
   m_EditorClassIdentifier: 
-  dataName: Bob_test
-  dragonBonesJSON: {fileID: 4900000, guid: bdae71e35f0a30d47b3e6ccec4ce2cfa, type: 3}
+  dataName: Bob_armature_finished
+  dragonBonesJSON: {fileID: 4900000, guid: 5926a2fcda4481946aef57837bc90ec6, type: 3}
   textureAtlas:
-  - textureAtlasJSON: {fileID: 4900000, guid: d8b66dcdf0371e54a9d962fdaea21ee7, type: 3}
-    texture: {fileID: 2800000, guid: 57efb14f3b2f2ca469dcbd3c25f77a93, type: 3}
-    material: {fileID: 2100000, guid: ff1dfa0299986994eb91d60a1cd08c0d, type: 2}
+  - textureAtlasJSON: {fileID: 4900000, guid: 1a4bc1e69672cb14a8f35f7f2e89a638, type: 3}
+    texture: {fileID: 2800000, guid: 77ea74b1918f42c4db26ffcc6ac93788, type: 3}
+    material: {fileID: 2100000, guid: c188f4b210a5b9e41ae82a0c21ad103e, type: 2}
     uiMaterial: {fileID: 0}

@@ -70,7 +70,7 @@ public class AnimatorManager : MonoBehaviour
         {
             if (atackStatus == 0)
             {
-                AC._animation_player("Idle", 2);
+                AC._animation_player("idle", 2);
             }
             else if (atackStatus == 1)
             {
@@ -82,11 +82,11 @@ public class AnimatorManager : MonoBehaviour
             }
             else if (atackStatus == 3)
             {
-                AC._animation_player("Idle_to_idle_shield", 2, 1);
+                AC._animation_player("idle_parring", 2, 1);
             }
             else if (atackStatus == 4)
             {
-                AC._animation_player("Idle_shield", 1);
+                AC._animation_player("idle_shield", 1);
             }
         }
         else if (move)
@@ -97,7 +97,7 @@ public class AnimatorManager : MonoBehaviour
             }
             else if (atackStatus == 1)
             {
-                AC._animation_player("walk_to_sweep", 2, 1);
+                AC._animation_player("sweep", 2, 1);
             }
             else if (atackStatus == 2)
             {
@@ -105,7 +105,7 @@ public class AnimatorManager : MonoBehaviour
             }
             else if (atackStatus == 3)
             {
-                AC._animation_player("walk_to_walk_shield", 2, 1);
+                AC._animation_player("walk_parring", 2, 1);
             }
             else if (atackStatus == 4)
             {
