@@ -3,7 +3,7 @@
 public class playerMoveManager : MonoBehaviour
 {
     charMove CM;
-    charControll CC;
+    playerControll PC;
     serializedVector SV;
     charPhisicalMove CPM;
     charCollision CCs;
@@ -15,7 +15,7 @@ public class playerMoveManager : MonoBehaviour
     {
 
         CM = GetComponent<charMove>();
-        CC = GetComponent<charControll>();
+        PC = GetComponent<playerControll>();
         SV = GetComponent<serializedVector>();
         CPM = GetComponent<charPhisicalMove>();
         CCs = GetComponent<charCollision>();
@@ -29,7 +29,7 @@ public class playerMoveManager : MonoBehaviour
     
     void Update()
     {
-        Vector2 CC_moveVector = CPM._GetMoveVector(CC._getVector());
+        Vector2 CC_moveVector = CPM._GetMoveVector(PC._getVector());
         CM._doMove(CC_moveVector);
         SV._doSerializedVector(CC_moveVector);
 
@@ -38,7 +38,7 @@ public class playerMoveManager : MonoBehaviour
 
         if (CC_moveVector == new Vector2(0, 0)) isMoved = false;
         else isMoved = true;
-        side = CC._getSide();
+        side = PC._getSide();
         
 
 

@@ -1,17 +1,24 @@
 ﻿using UnityEngine;
 
-public class charControll : MonoBehaviour
+public class playerControll : MonoBehaviour
 {
+
+    [SerializeField] string keyUp = "w";
+    [SerializeField] string keyDown = "s";
+    [SerializeField] string keyLeft = "a";
+    [SerializeField] string keyRight = "d";
+
+
     float sqrt2_2 = 0.70710678118f;
     bool side = false;
 
     public Vector2 _getVector()
     {
         Vector2 _moveVector = new Vector2(0,0);
-        bool bW = Input.GetKey(KeyCode.W);
-        bool bA = Input.GetKey(KeyCode.A);
-        bool bS = Input.GetKey(KeyCode.S);
-        bool bD = Input.GetKey(KeyCode.D);
+        bool bW = Input.GetKey(keyUp);
+        bool bA = Input.GetKey(keyLeft);
+        bool bS = Input.GetKey(keyDown);
+        bool bD = Input.GetKey(keyRight);
 
         if (bA)
         {

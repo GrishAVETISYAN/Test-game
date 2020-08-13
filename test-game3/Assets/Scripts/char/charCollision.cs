@@ -15,12 +15,13 @@ public class charCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag.ToString() == "Solid")
+        if (collision.tag.ToString() == "Solid")
         {
             SolidScrip SS = collision.GetComponentInParent<SolidScrip>();
             PM._addComponentOnCharPhisicalMove(SS._GetNormal());
         }
         
+
     }
 
 
@@ -31,5 +32,6 @@ public class charCollision : MonoBehaviour
             SolidScrip SS = collision.GetComponent<SolidScrip>();
             PM._deleteComponentOnCharPhisicalMove(SS._GetNormal());
         }
+        
     }
 }

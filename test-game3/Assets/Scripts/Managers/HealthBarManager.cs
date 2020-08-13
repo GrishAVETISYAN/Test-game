@@ -64,19 +64,19 @@ public class HealthBarManager : MonoBehaviour
     void Start()
     {
         CH = CHG.GetComponent<charHealth>();
-        healthMax = CH.HealthMax;
-        health = CH.Health;
-        healthBleck = CH.Health;
+        healthMax = CH._getHealthMax();
+        health = CH._getHealth();
+        healthBleck = health;
 
 
 
-        BalanceMax = CH.BalanceMax;
-        Balance = CH.Balance;
-        BalanceBleck = CH.Balance;
+        BalanceMax = CH._getBalancehMax();
+        Balance = CH._getBalance();
+        BalanceBleck = Balance;
 
-        ManaMax = CH.ManaMax;
-        Mana = CH.Mana;
-        ManaBleck = CH.Mana;
+        ManaMax = CH._getManaMax();
+        Mana = CH._getMana();
+        ManaBleck = Mana;
 
 
         HealthBarRenderer = HealthBar.GetComponent<SpriteRenderer>();
@@ -101,11 +101,11 @@ public class HealthBarManager : MonoBehaviour
     {
 
         
-        health = CH.Health;
+        health = CH._getHealth();
 
-        Balance = CH.Balance;
+        Balance = CH._getBalance();
 
-        Mana = CH.Mana;
+        Mana = CH._getMana();
 
 
         HealtText.text = healthMax.ToString() + "/" + health.ToString();

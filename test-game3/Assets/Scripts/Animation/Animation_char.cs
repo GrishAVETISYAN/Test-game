@@ -13,15 +13,24 @@ public class Animation_char : MonoBehaviour
     }
     */
 
-    public void _animation_player(string name, float speed, int playTime=0)
+    public void _animation_player(string name, float speed, int playTime, float fadeTime = 0.1f)
     {
         anim.animation.timeScale = speed;
-        anim.animation.FadeIn(name, 0.5f, playTime);
+        anim.animation.FadeIn(name, fadeTime, playTime);
     }
 
     public void _animation_flip(bool flip)
     {
-        anim.armature.flipX = flip;
+
+        if (!flip)
+        {
+            anim.gameObject.transform.eulerAngles=new Vector3(0, 0, 0);
+        }
+        else
+        {
+            anim.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        //anim.armature.flipX = flip;
         
     }
 

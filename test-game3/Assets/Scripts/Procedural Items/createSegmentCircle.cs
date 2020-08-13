@@ -5,18 +5,20 @@ using UnityEngine;
 
 public class createSegmentCircle : MonoBehaviour
 {
-    PolygonCollider2D PC;
-    void Awake()
-    {
-        PC = GetComponent<PolygonCollider2D>();
-        _doCreateColider();
-    }
+    
+    
 
     // Update is called once per frame
-    void _doCreateColider()
+    public void _doCreateColider(PolygonCollider2D PC,float alpha,float R)
     {
+        
         PC.pathCount = 1;
-        PC.points = _getProceduralCircleColider(60f,2f);
+        PC.points = _getProceduralCircleColider(alpha, R);
+        PC.enabled = true;
+    }
+    public void _doCreateZero(PolygonCollider2D PC)
+    {
+        PC.enabled = false;
     }
 
     Vector2[] _getProceduralCircleColider(float alpha, float R)

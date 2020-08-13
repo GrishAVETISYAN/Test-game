@@ -7,7 +7,7 @@ using UnityEngine;
 public class AnimatorManager : MonoBehaviour
 {
     playerMoveManager PMM;
-    fightManager FM;
+    fightmanager2 FM;
     Animation_char AC;
 
     [SerializeField]bool move = false;
@@ -17,13 +17,14 @@ public class AnimatorManager : MonoBehaviour
     bool _side = false;
 
     [SerializeField] int atackStatus = 0;
+    [SerializeField] int atackStatusClass = 0;
     int _atackStatus = 0;
 
     private void Start()
     {
         PMM = GetComponent<playerMoveManager>();
         AC = GetComponent<Animation_char>();
-        FM = GetComponent<fightManager>();
+        FM = GetComponent<fightmanager2>();
     }
 
 
@@ -31,7 +32,8 @@ public class AnimatorManager : MonoBehaviour
     {
         move = PMM.getIsMoved();
         side = PMM.getSide();
-        atackStatus = FM._getAttackStatus();
+        atackStatus = FM._getAnimationProcess();
+        atackStatusClass = FM._getAnimationProcessAttackClass();
 
         findChange();
         
@@ -50,7 +52,8 @@ public class AnimatorManager : MonoBehaviour
         if (_side != side)
         {
             
-            refreshAnimation();
+            //refreshAnimation();
+            AC._animation_flip(side);
             _side = side;
         }
 
@@ -65,20 +68,20 @@ public class AnimatorManager : MonoBehaviour
 
     void refreshAnimation()
     {
-        AC._animation_flip(side);
+        
         if (!move)
         {
             if (atackStatus == 0)
             {
-                AC._animation_player("idle", 2);
+                AC._animation_player("idle", 2,0);
             }
             else if (atackStatus == 1)
             {
-                AC._animation_player("sweep", 2, 1);
+                AC._animation_player("sweep" + atackStatusClass.ToString(), 2f, 1);
             }
             else if (atackStatus == 2)
             {
-                AC._animation_player("attack", 10, 1);
+                AC._animation_player("attack"+ atackStatusClass.ToString(), 2f, 1,0);
             }
             else if (atackStatus == 3)
             {
@@ -86,22 +89,22 @@ public class AnimatorManager : MonoBehaviour
             }
             else if (atackStatus == 4)
             {
-                AC._animation_player("idle_shield", 1);
+                AC._animation_player("idle_shield", 1,0);
             }
         }
         else if (move)
         {
             if (atackStatus == 0)
             {
-                AC._animation_player("walk", 2);
+                AC._animation_player("walk", 2,0);
             }
             else if (atackStatus == 1)
             {
-                AC._animation_player("sweep", 2, 1);
+                AC._animation_player("sweep" + atackStatusClass.ToString(), 2, 1);
             }
             else if (atackStatus == 2)
             {
-                AC._animation_player("attack", 2, 1);
+                AC._animation_player("attack" + atackStatusClass.ToString(), 2, 1);
             }
             else if (atackStatus == 3)
             {
@@ -109,7 +112,7 @@ public class AnimatorManager : MonoBehaviour
             }
             else if (atackStatus == 4)
             {
-                AC._animation_player("walk_shield", 1);
+                AC._animation_player("walk_shield", 1,0);
             }
 
 
