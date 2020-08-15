@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
-    playerMoveManager PMM;
+    charMove CM;
     fightmanager2 FM;
     Animation_char AC;
 
@@ -22,7 +22,7 @@ public class AnimatorManager : MonoBehaviour
 
     private void Start()
     {
-        PMM = GetComponent<playerMoveManager>();
+        CM = GetComponent<charMove>();
         AC = GetComponent<Animation_char>();
         FM = GetComponent<fightmanager2>();
     }
@@ -30,8 +30,8 @@ public class AnimatorManager : MonoBehaviour
 
     private void Update()
     {
-        move = PMM.getIsMoved();
-        side = PMM.getSide();
+        move = CM.getIsMoved();
+        side = CM.getSide();
         atackStatus = FM._getAnimationProcess();
         atackStatusClass = FM._getAnimationProcessAttackClass();
 

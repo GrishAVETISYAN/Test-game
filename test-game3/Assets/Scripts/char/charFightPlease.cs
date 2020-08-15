@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class playerFightPlease : MonoBehaviour
+public class charFightPlease : MonoBehaviour
 {
     dataBaseSprites Base;
     Sprite pointTrue;

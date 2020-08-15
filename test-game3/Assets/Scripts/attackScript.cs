@@ -10,6 +10,8 @@ public class attackScript : MonoBehaviour
 
     int[] oneDamage = new int[3] {10,0,0};//Healt, Balance, Mana
     int[] moreDamage = new int[3] {5,0,0};
+
+    int team = 0;
     void Awake()
     {
         CHs = new List<charHealth>();
@@ -42,11 +44,14 @@ public class attackScript : MonoBehaviour
         {
             
             charHealth CH = collision.transform.GetComponentInParent<charHealth>();
-            CHs.Add(CH);
-            CH._getAttack(oneDamage[0], oneDamage[1], oneDamage[2]);
 
-            Debug.Log("hesa");
+            if (CH._getTeam() != team)
+            {
+                CHs.Add(CH);
+                CH._getAttack(oneDamage[0], oneDamage[1], oneDamage[2]);
 
+                Debug.Log("hesa");
+            }
         }
     }
 
@@ -54,16 +59,18 @@ public class attackScript : MonoBehaviour
     {
         if (collision.tag == "Char" || collision.tag == "Player")
         {
-
             charHealth CH = collision.transform.GetComponentInParent<charHealth>();
-            CHs.Remove(CH);
-            
+            if (CH._getTeam() != team)
+            {
+                CHs.Remove(CH);
+            }
 
         }
     }
 
-    public void _changgeDamage(float _time =0,int HealthOneDamage=0, int HealthMoreDamage = 0,int BalanceOneDamage=0,int BalanceMoreDamage = 0,int ManaOneDamage = 0,int ManaMoreDamage = 0)
+    public void _changgeDamage(int _team, float _time = 0, int HealthOneDamage=0, int HealthMoreDamage = 0,int BalanceOneDamage=0,int BalanceMoreDamage = 0,int ManaOneDamage = 0,int ManaMoreDamage = 0)
     {
+        team = _team;
         time = _time;
         oneDamage[0] = HealthOneDamage;
         oneDamage[1] = BalanceOneDamage;
