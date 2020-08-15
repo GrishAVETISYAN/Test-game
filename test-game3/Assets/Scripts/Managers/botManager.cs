@@ -14,7 +14,8 @@ public class botManager : MonoBehaviour
     botMoveManager BMM;
     fightmanager2 FM;
 
-    [SerializeField]int presentSituation = 0;
+    [SerializeField] int presentSituation = 0;
+    [SerializeField] int situationType = 0;
     bool onStart = true;
 
     private void Start()
@@ -61,11 +62,12 @@ public class botManager : MonoBehaviour
 
     
 
-    public void _setPresentSituation(int _presentSituation, GameObject targetPoint, GameObject target)
+    public void _setPresentSituation(int _presentSituation,int _situationType, GameObject targetPoint, GameObject target)
     {
         TargetPoint = targetPoint;
         Target = target;
         presentSituation = _presentSituation;
+        situationType = _situationType;
         onStart = true;
     }
 

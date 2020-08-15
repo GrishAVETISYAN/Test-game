@@ -39,6 +39,7 @@ public class translateEvent : MonoBehaviour
         foreach (botManager BM in BMS)
         {
             BM._refresh();
+            BM.GetComponentInParent<charWayPoints>()._setWayPointsEnd();
         }
         //Debug.Log("event");
     }

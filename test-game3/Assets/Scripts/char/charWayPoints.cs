@@ -8,13 +8,19 @@ public class charWayPoints : MonoBehaviour
     Vector2[] WPs= {new Vector2(0,-1), new Vector2(1, 1), new Vector2(-1, 1) };
     int curssor = 0;
     [SerializeField]bool end = false;
-    
+
 
     public bool _getWayPointsEnd()
     {
 
         return (end);
-        
+
+    }
+    public void _setWayPointsEnd(bool _end = false)
+    {
+
+        end = _end;
+
     }
     public Vector2 _getTargetPosition()
     {
