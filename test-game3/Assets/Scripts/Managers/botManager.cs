@@ -5,62 +5,84 @@ using UnityEngine;
 
 public class botManager : MonoBehaviour
 {
-    public GameObject Target;
+    GameObject Target;
     GameObject TargetPoint;
     
+    
+
 
     botMoveManager BMM;
+    fightmanager2 FM;
 
-    [SerializeField]int Behaviour = 1;//0-ban chi anum , 1-qayluma playeri pointi hetevic
+    [SerializeField] int presentSituation = 0;
+    [SerializeField] int situationType = 0;
+    bool onStart = true;
 
     private void Start()
     {
+        BMM = GetComponent<botMoveManager>();
+        FM = GetComponent<fightmanager2>();
 
-        
+
     }
     private void Update()
     {
 
-        if (Input.GetKeyDown("space"))
+        if (presentSituation == 0)
         {
-            
-            TargetPoint = Target.GetComponent<playerFightPlease>().getPoint(gameObject);
-            if (TargetPoint == null)
+            if (onStart)
             {
-                Behaviour = 0;
+                Debug.Log("figna");
+                BMM._stop();
+
+                onStart = false;
             }
-                if (Behaviour == 1)
+
+           
+        }
+
+
+        if (presentSituation == 2)
+        {
+            if (onStart)
             {
                 
-                BMM = GetComponent<botMoveManager>();
-                BMM._botMoveManagerInit();
+                
                 BMM._changeTargetPosition(TargetPoint.transform.position);
                 _initTarget();
+
+                onStart = false;
             }
 
+            BMM._botMoveManagerLoop(TargetPoint.transform.position);
         }
-
-        if (Input.GetKey("space"))
+        else if (presentSituation == 3)
         {
-            if (Behaviour == 1)
+            if (onStart)
             {
-                BMM._botMoveManagerLoop(TargetPoint.transform.position);
+                FM._doAttack(Mathf.Atan2(Target.transform.position.y - transform.position.y, Target.transform.position.x - transform.position.x)*Mathf.Rad2Deg, situationType);
+
+                onStart = false;
             }
+
+           
         }
+
     }
-
-    
-
-    void _goToTarget()
+    public void _setPresentSituation(int _presentSituation,int _situationType, GameObject targetPoint, GameObject target)
     {
-
+        TargetPoint = targetPoint;
+        Target = target;
+        presentSituation = _presentSituation;
+        situationType = _situationType;
+        onStart = true;
     }
 
     public void _refresh()
     {
         Debug.Log("refresh");
-        
-        BMM._changeTargetPosition(new Vector2( Target.transform.position.x+0.5f, Target.transform.position.y + 0.5f));
+        if (presentSituation == 2)
+            BMM._changeTargetPosition(new Vector2(TargetPoint.transform.position.x+0.5f, TargetPoint.transform.position.y + 0.5f));
     }
 
 

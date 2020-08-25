@@ -41,8 +41,5 @@ public class playerControll : MonoBehaviour
         return (_moveVector);
     }
 
-    public bool _getSide()
-    {
-        return (side);
-    }
+    
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
-    playerMoveManager PMM;
+    charMove CM;
     fightmanager2 FM;
     Animation_char AC;
 
@@ -22,7 +22,7 @@ public class AnimatorManager : MonoBehaviour
 
     private void Start()
     {
-        PMM = GetComponent<playerMoveManager>();
+        CM = GetComponent<charMove>();
         AC = GetComponent<Animation_char>();
         FM = GetComponent<fightmanager2>();
     }
@@ -30,9 +30,9 @@ public class AnimatorManager : MonoBehaviour
 
     private void Update()
     {
-        move = PMM.getIsMoved();
-        side = PMM.getSide();
-        atackStatus = FM._getAnimationProcess();
+        move = CM.getIsMoved();
+        side = CM.getSide();
+        atackStatus = FM._getProcess();
         atackStatusClass = FM._getAnimationProcessAttackClass();
 
         findChange();
@@ -73,23 +73,23 @@ public class AnimatorManager : MonoBehaviour
         {
             if (atackStatus == 0)
             {
-                AC._animation_player("idle", 2,0);
+                AC._animation_player("idle", 2f,0);
             }
             else if (atackStatus == 1)
             {
-                AC._animation_player("sweep" + atackStatusClass.ToString(), 2f, 1);
+                AC._animation_player("sweep" + atackStatusClass.ToString(), 2f, 1,1f);
             }
             else if (atackStatus == 2)
             {
-                AC._animation_player("attack"+ atackStatusClass.ToString(), 2f, 1,0);
+                AC._animation_player("attack"+ atackStatusClass.ToString(), 2f, 1, 1f);
             }
             else if (atackStatus == 3)
             {
-                AC._animation_player("idle_parring", 2, 1);
+                AC._animation_player("idle_parring", 2f, 1);
             }
             else if (atackStatus == 4)
             {
-                AC._animation_player("idle_shield", 1,0);
+                AC._animation_player("idle_shield", 1f,0);
             }
         }
         else if (move)
@@ -100,11 +100,11 @@ public class AnimatorManager : MonoBehaviour
             }
             else if (atackStatus == 1)
             {
-                AC._animation_player("sweep" + atackStatusClass.ToString(), 2, 1);
+                AC._animation_player("sweep" + atackStatusClass.ToString(), 2, 1, 2f);
             }
             else if (atackStatus == 2)
             {
-                AC._animation_player("attack" + atackStatusClass.ToString(), 2, 1);
+                AC._animation_player("attack" + atackStatusClass.ToString(), 2, 1, 2f);
             }
             else if (atackStatus == 3)
             {

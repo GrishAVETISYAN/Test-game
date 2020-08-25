@@ -12,6 +12,11 @@ public class fightmanager2 : MonoBehaviour
     
     charHealth CH;
 
+
+    
+
+
+
     [SerializeField] int process = 0;
     [SerializeField] int processClass = 0;
 
@@ -60,10 +65,13 @@ public class fightmanager2 : MonoBehaviour
     float parringTimer = 0;
     void Start()
     {
-        CSC = GetComponent<createSegmentCircle>();
+        
         CH = GetComponent<charHealth>();
 
         attackObject = new GameObject();
+        AS = attackObject.AddComponent<attackScript>();
+
+
         attackObject.name = "attack";
         attackObject.tag = "Attack";
         attackObject.transform.parent = transform;
@@ -72,7 +80,8 @@ public class fightmanager2 : MonoBehaviour
         PC.isTrigger = true;
         Rigidbody2D RB2 = attackObject.AddComponent<Rigidbody2D>();
         RB2.bodyType = RigidbodyType2D.Kinematic;
-        AS = attackObject.AddComponent<attackScript>();
+        
+        CSC = attackObject.AddComponent<createSegmentCircle>();
         CSC._doCreateZero(PC);
     }
 
@@ -86,7 +95,7 @@ public class fightmanager2 : MonoBehaviour
     {
         return (attackAnimation[processClass]);
     }
-    public int _getAnimationProcess()
+    public int _getProcess()
     {
         return (process);
     }
@@ -236,7 +245,7 @@ public class fightmanager2 : MonoBehaviour
     {
         attackCurrsor = attackAttackClass;
         CH._getAttack(mySelfHealthDamage[attackCurrsor], mySelfBalanceDamage[attackCurrsor], mySelfManaDamage[attackCurrsor]);
-        AS._changgeDamage(timeDamage[attackCurrsor],
+        AS._changgeDamage(CH._getTeam(),timeDamage[attackCurrsor],
             onceHealthDamage[attackCurrsor],onceBalanceDamage[attackCurrsor],onceManaDamage[attackCurrsor],
             moreHealthDamage[attackCurrsor],moreBalanceDamage[attackCurrsor],moreManaDamage[attackCurrsor]);
         process = 2;

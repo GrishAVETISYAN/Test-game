@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class charHealth : MonoBehaviour
 {
+    [SerializeField] int team = 0;
     [SerializeField] int HealthMax = 100;
     [SerializeField] int Health = 100;
 
@@ -51,6 +52,10 @@ public class charHealth : MonoBehaviour
         }
     }
 
+    public int _getTeam()
+    {
+        return (team);
+    }
     public int _getHealth()
     {
         return (Health);
