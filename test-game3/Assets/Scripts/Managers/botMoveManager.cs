@@ -5,13 +5,20 @@ using UnityEngine.UIElements;
 
 public class botMoveManager : MonoBehaviour
 {
+
+    const bool SERIALIZED = false;
+
     charMove CM;
     charGoTo CGT;
-    serializedVector SV;
+    
 
     charWayPoints CWP;
-    serializedWayPoints SWP;
 
+
+    #if SERIALIZED
+    serializedVector SV;
+    serializedWayPoints SWP;
+    #endif
     wayFindPositionSystem WFPS;
 
     [SerializeField]    Vector2[] wayPoints;
@@ -19,20 +26,24 @@ public class botMoveManager : MonoBehaviour
 
 
     [SerializeField]    Vector2 targetWayFindPos;
-    
 
-    public void _botMoveManagerInit()
+    private void Start()
+    {
+        _botMoveManagerInit();
+    }
+
+    void _botMoveManagerInit()
     {
         CM = GetComponent<charMove>();
         CGT = GetComponent<charGoTo>();
-        SV = GetComponent<serializedVector>();
-
         CWP = GetComponent<charWayPoints>();
-        SWP = GetComponent<serializedWayPoints>();
-
         WFPS = Camera.main.GetComponent<wayFindPositionSystem>(); ;
 
+        #if SERIALIZED
+        SV = GetComponent<serializedVector>();
+        SWP = GetComponent<serializedWayPoints>();
         SV._doBegin();
+        #endif
 
 
         
@@ -61,8 +72,20 @@ public class botMoveManager : MonoBehaviour
         
         _doStartGoToWayPoints(wayPoints, wayPointsCurrsor);
     }
+    public void _stop()
+    {
+        CM._doMove(Vector2.zero);
+        wayPoints = null;
+        CWP._setWayPointsEnd(true);
 
-    
+
+
+        wayPointsCurrsor = 0;
+
+        //_doStartGoToWayPoints(wayPoints, wayPointsCurrsor);
+    }
+
+
     void _doLoopGoToWayPoints(Vector2[] _wayPoints, int _wayPointsCurrsor)//Go to way points loop
     {
 
@@ -72,15 +95,19 @@ public class botMoveManager : MonoBehaviour
             Vector2 moveVector = CGT._getGoTo(CWP._getTargetPosition());
 
             CM._doMove(moveVector);
-            SV._doSerializedVector(moveVector);
+            #if SERIALIZED
+                    SV._doSerializedVector(moveVector);
+            #endif
 
             if (CGT._getGoToHome())
             {
                 
                 __doAddCurrsor();
                 CWP._doAddCurrsorCheck(_wayPointsCurrsor);
-                SWP._doSetCurrsor(_wayPointsCurrsor);
-                SWP._doRefresh();
+                #if SERIALIZED
+                        SWP._doSetCurrsor(_wayPointsCurrsor);
+                        SWP._doRefresh();
+                #endif
 
 
             }
@@ -90,10 +117,11 @@ public class botMoveManager : MonoBehaviour
     {
 
         CWP._doSetPositionsAndCurrsor(_wayPoints, _wayPointsCurrsor);
-        SWP._doSetPositionsAndCurrsor(_wayPoints, _wayPointsCurrsor);
-
-        SWP._doDestroyWayPaints();
-        SWP._doCreateWayPoints();
+        #if SERIALIZED
+            SWP._doSetPositionsAndCurrsor(_wayPoints, _wayPointsCurrsor);
+            SWP._doDestroyWayPaints();
+            SWP._doCreateWayPoints();
+        #endif
     }
     void _doLoopGoToPosition(Vector2 targetPosition)//Go to position Loop
     {
@@ -103,7 +131,9 @@ public class botMoveManager : MonoBehaviour
         Vector2 moveVector = CGT._getGoTo(targetPosition);
 
         CM._doMove                  (moveVector);
-        SV._doSerializedVector      (moveVector);
+        #if SERIALIZED
+                SV._doSerializedVector      (moveVector);
+        #endif
     }
 
     void __doAddCurrsor()

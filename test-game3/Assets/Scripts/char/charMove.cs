@@ -4,7 +4,7 @@ public class charMove : MonoBehaviour
 {
     float moveSpeed = 1f;
 
-    bool isMoved = false;
+    [SerializeField]bool isMoved = false;
     bool side = false;
     public void _doMove(Vector2 moveVector) //1,0 Moves the character with the given vector.
     {

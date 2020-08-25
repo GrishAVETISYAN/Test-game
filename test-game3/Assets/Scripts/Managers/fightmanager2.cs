@@ -95,7 +95,7 @@ public class fightmanager2 : MonoBehaviour
     {
         return (attackAnimation[processClass]);
     }
-    public int _getAnimationProcess()
+    public int _getProcess()
     {
         return (process);
     }

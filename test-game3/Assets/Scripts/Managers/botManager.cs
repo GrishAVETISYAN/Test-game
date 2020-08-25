@@ -28,13 +28,26 @@ public class botManager : MonoBehaviour
     private void Update()
     {
 
-        
+        if (presentSituation == 0)
+        {
+            if (onStart)
+            {
+                Debug.Log("figna");
+                BMM._stop();
+
+                onStart = false;
+            }
+
+           
+        }
+
+
         if (presentSituation == 2)
         {
             if (onStart)
             {
                 
-                BMM._botMoveManagerInit();
+                
                 BMM._changeTargetPosition(TargetPoint.transform.position);
                 _initTarget();
 
@@ -47,7 +60,7 @@ public class botManager : MonoBehaviour
         {
             if (onStart)
             {
-                FM._doAttack(Mathf.Atan2(Target.transform.position.y - transform.position.y, Target.transform.position.x - transform.position.x)*Mathf.Rad2Deg);
+                FM._doAttack(Mathf.Atan2(Target.transform.position.y - transform.position.y, Target.transform.position.x - transform.position.x)*Mathf.Rad2Deg, situationType);
 
                 onStart = false;
             }
@@ -56,12 +69,6 @@ public class botManager : MonoBehaviour
         }
 
     }
-
-        
-    
-
-    
-
     public void _setPresentSituation(int _presentSituation,int _situationType, GameObject targetPoint, GameObject target)
     {
         TargetPoint = targetPoint;

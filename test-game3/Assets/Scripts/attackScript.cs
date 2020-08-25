@@ -50,7 +50,7 @@ public class attackScript : MonoBehaviour
                 CHs.Add(CH);
                 CH._getAttack(oneDamage[0], oneDamage[1], oneDamage[2]);
 
-                Debug.Log("hesa");
+                
             }
         }
     }
